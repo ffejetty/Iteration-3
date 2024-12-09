@@ -288,7 +288,7 @@ function mousePressed(){
          ){
         
         creatingLine = true;
-        lines.push(new Line([createVector(mouseX,mouseY)],lineWidth)); //create new line to start being drawn
+        lines.push(new Line([createVector(mouseX,mouseY)],lineWidth, 255, colourScheme.lines)); //create new line to start being drawn
       }
       break;
     case 1:
@@ -333,6 +333,10 @@ function keyPressed(){
       balls.push(new Ball(random(levels[currentLevel].spoutPos.x - 10,levels[currentLevel].spoutPos.x + 10),levels[currentLevel].spoutPos.y,5,random(0.75,0.9), createVector(0,levels[currentLevel].gravity*10)));
       levels[currentLevel].ballsLeft--;
     }
+  }else if(key == "i"){
+    colourScheme.setTheme2();
+  }else if(key == "o"){
+    colourScheme.setDefault();
   }
 }
 

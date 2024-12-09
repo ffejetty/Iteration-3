@@ -46,21 +46,21 @@ class Level{
     
     cup.display();
     
-    fill(0);
+    fill(colourScheme.spout[0], colourScheme.spout[1], colourScheme.spout[2]);
     rect(this.spoutPos.x-15,this.spoutPos.y-20,30,40); //draw spout
-    fill(250);
+    fill(255 - colourScheme.spout[0], 255 - colourScheme.spout[1], 255 - colourScheme.spout[2]);
     rect(this.spoutPos.x - 3, this.spoutPos.y-15, 6, 30); //draw white back of prog bar
-    fill(0,250,0); 
+    fill(colourScheme.spoutBar[0], colourScheme.spoutBar[1], colourScheme.spoutBar[2]); 
     rect(this.spoutPos.x - 3, this.spoutPos.y+15-(30*(this.ballsLeft/100)), 6, (30*(this.ballsLeft/100))); //draw bar
-    fill(0)
+    fill(colourScheme.text[0], colourScheme.text[1], colourScheme.text[2])
     text("press SHIFT to start balls",this.spoutPos.x,this.spoutPos.y-25);
     
     strokeWeight(0);
-    fill(colourScheme.bar[0]*1.5, colourScheme.bar[1]*1.5, colourScheme.bar[2]*1.5);
+    fill(255, 255, 220);
     rect(0,0,width,50);
     
     strokeWeight(1);
-    fill(colourScheme.bar[0], colourScheme.bar[1], colourScheme.bar[2]);
+    fill(250, 221, 155);
     rect(width/2-200,0,400,50); //top panel with info
     fill(0);
     text("time: " + this.getTimeString(this.currentTime),width/2-100,25);

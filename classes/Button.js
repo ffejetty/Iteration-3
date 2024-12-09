@@ -1,10 +1,11 @@
 class Button{
-  constructor(x, y, w, h, newText = "", newColour = [255,255,255], newTextSize = 12){
+  constructor(x, y, w, h, newText = "", newColour = [255,255,255], newTextSize = 12, newTextColour = [0, 0, 0]){
     this.pos = createVector(x, y);
     this.width = w;
     this.height = h;
     this.text = newText;
     this.textSize = newTextSize;
+    this.textColour = newTextColour
     this.colour = newColour;
   }
   
@@ -37,7 +38,7 @@ class Button{
     
     rect(this.pos.x-this.width/2,this.pos.y-this.height/2,this.width,this.height);
     
-    fill(0);
+    fill(this.textColour[0], this.textColour[1], this.textColour[2]);
     strokeWeight(0);
     textSize(this.textSize);
     text(this.text,this.pos.x-this.width/2,this.pos.y,this.width);

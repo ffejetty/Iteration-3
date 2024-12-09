@@ -13,13 +13,13 @@ function isBetween(num, bound1, bound2, tolerance = 0) {
 
 function populateMenuButtons(){
   //level select button
-  menuButtons.push(new Button(width/2,height/2.5,width/5,100,"Level Select",[200,200,200]));
+  menuButtons.push(new Button(width/2,height/2.5,width/5,100,"Level Select",colourScheme.buttons));
   menuButtons[menuButtons.length - 1].action = function(){
     screen = 2;
   }
   
   //settings
-  menuButtons.push(new Button(width/2,height/1.8,width/5,100,"Settings",[200,200,200]));
+  menuButtons.push(new Button(width/2,height/1.8,width/5,100,"Settings",colourScheme.buttons));
   menuButtons[menuButtons.length - 1].action = function(){
     screen = 3;
   }
@@ -35,7 +35,7 @@ function populateLevelSelectButtons(){
   for (let i in levels){
     let newX = (100+w)*(i-4*floor(i/4)) + 50 + 250;
     let newY = (h+150)*floor(i/4)+50+50;
-    levelSelectButtons.push(new Button(newX,newY,100,100,"" + (++i) + "\n\nHighscore: 0" + "\nFastest Time: 0",[200,200,200]));
+    levelSelectButtons.push(new Button(newX,newY,100,100,"" + (++i) + "\n\nHighscore: 0" + "\nFastest Time: 0",colourScheme.buttons));
     levelSelectButtons[levelSelectButtons.length - 1].action = function(){  //it works, shut up p5 idc abt semantics
       currentLevel = Number(i);
       levels[currentLevel].load();
@@ -47,7 +47,7 @@ function populateLevelSelectButtons(){
   for (let i = levels.length; i < 20; i++){
     let newX = (100+w)*(i-4*floor(i/4)) + 50 + 250;
     let newY = (h+150)*floor(i/4)+50+50;
-    levelSelectButtons.push(new Button(newX,newY,100,100,"🔒",[200,200,200]));
+    levelSelectButtons.push(new Button(newX,newY,100,100,"🔒",colourScheme.buttons));
   }
   
 }
@@ -160,9 +160,9 @@ function menu(){
   push();
   noStroke();
   textSize(20);
-  fill(200);
+  fill(colourScheme.buttons[0], colourScheme.buttons[1], colourScheme.buttons[2]);
   rect(width/5, 75, 3*width/5,100);
-  fill(0);
+  fill(colourScheme.text[0], colourScheme.text[1], colourScheme.text[2]);
   text("BALL DROP",width/2, 125);
   pop();
   for (let button in menuButtons){
@@ -183,7 +183,9 @@ function levelSelect(){
 
 
 function settings(){
+  push();
   text("settings placeholder",width/2,height/2);
+  pop();
 }
 
 function game(level){
