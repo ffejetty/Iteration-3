@@ -9,7 +9,7 @@ class Ball{
   }
   
   update(){
-    if(this.vel.mag() < 10){
+    if(this.vel.mag() < 20){
       this.vel.add(this.accel);
     }
     this.pos.add(this.vel);

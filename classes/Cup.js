@@ -11,7 +11,7 @@ class Cup{
     translate(this.pos.x,this.pos.y); //move origin to cup pos
     rotate(this.angle); //rotate axis by cup angle
     //now anything drawn at origin will be on screen at cup pos and rotated by cup angle
-    stroke(30, 217, 217)
+    stroke(colourScheme.cup[0] * 0.9, colourScheme.cup[1] * 0.9, colourScheme.cup[2] * 0.9)
     fill(colourScheme.cup[0], colourScheme.cup[1], colourScheme.cup[2], 100);
     square(-this.size/2,-this.size/2,this.size,0,0,10,10); //squares drawn from top left corner so to rotate from center start at (-size/2,-size/2)
     pop();

@@ -84,14 +84,14 @@ class ColourScheme{
   }
 
   setTheme2(){
-    this.balls = [265, 189, 214];
-    this.backGround = [255, 255, 255];
-    this.buttons = [157, 227, 260];
-    this.spout = [91, 206, 250];
-    this.spoutBar = [245, 169, 184];
-    this.lines = [91, 206, 250];
-    this.cup = [245, 169, 184];
-    this.text = [225, 149, 184];
+    this.balls = [200, 111, 77];
+    this.backGround = [249, 243, 207];
+    this.buttons = [221, 188, 137];
+    this.spout = [150, 61, 27];
+    this.spoutBar = [237, 231, 207];
+    this.lines = [130, 41, 7];
+    this.cup = [221, 188, 137];
+    this.text = [100, 11, 0];
 
     this.applyColours();
   }
@@ -105,6 +105,19 @@ class ColourScheme{
     this.lines = [21, 179, 146];
     this.cup = [115, 236, 139];
     this.text = [0, 108, 75];
+
+    this.applyColours();
+  }
+
+  setSecret(){
+    this.balls = [265, 189, 214];
+    this.backGround = [255, 255, 255];
+    this.buttons = [157, 227, 260];
+    this.spout = [91, 206, 250];
+    this.spoutBar = [245, 169, 184];
+    this.lines = [91, 206, 250];
+    this.cup = [245, 169, 184];
+    this.text = [225, 149, 184];
 
     this.applyColours();
   }
