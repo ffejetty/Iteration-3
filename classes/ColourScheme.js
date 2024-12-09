@@ -84,6 +84,19 @@ class ColourScheme{
   }
 
   setTheme2(){
+    this.balls = [265, 189, 214];
+    this.backGround = [255, 255, 255];
+    this.buttons = [157, 227, 260];
+    this.spout = [91, 206, 250];
+    this.spoutBar = [245, 169, 184];
+    this.lines = [91, 206, 250];
+    this.cup = [245, 169, 184];
+    this.text = [225, 149, 184];
+
+    this.applyColours();
+  }
+
+  setTheme3(){
     this.balls = [115, 236, 139];
     this.backGround = [210, 255, 114];
     this.buttons = [115, 236, 139];
