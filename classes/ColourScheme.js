@@ -109,6 +109,32 @@ class ColourScheme{
     this.applyColours();
   }
 
+  setProtanopia(){
+    this.balls = [243, 215, 37];
+    this.backGround = [250, 250, 250];
+    this.buttons = [200, 200, 200];
+    this.spout = [0, 0, 0];
+    this.spoutBar = [255, 240, 109];
+    this.lines = [0, 0, 0];
+    this.cup = [116, 97, 226];
+    this.text = [0, 0, 0];
+
+    this.applyColours();
+  }
+
+  setTritanopia(){
+    this.balls = [255, 50, 50];
+    this.backGround = [250, 250, 250];
+    this.buttons = [207, 196, 226];
+    this.spout = [0, 0, 0];
+    this.spoutBar = [239, 36, 197];
+    this.lines = [0, 0, 0];
+    this.cup = [30, 217, 217];
+    this.text = [0, 0, 0];
+
+    this.applyColours();
+  }
+
   setSecret(){
     this.balls = [265, 189, 214];
     this.backGround = [255, 255, 255];

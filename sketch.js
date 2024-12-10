@@ -334,9 +334,17 @@ function keyPressed(){
       levels[currentLevel].ballsLeft--;
     }
   }else if(key == "i"){
-    colourScheme.setTheme2();
+    colourScheme.setTheme3();
   }else if(key == "o"){
     colourScheme.setDefault();
+  }else if(key == "u"){
+    colourScheme.setTheme2();
+  }else if(key == "y"){
+    colourScheme.setTheme1();
+  }else if(key == "t"){
+    colourScheme.setProtanopia();
+  }else if(key == "r"){
+    colourScheme.setTritanopia();
   }
 }
 
