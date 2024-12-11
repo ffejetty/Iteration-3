@@ -25,6 +25,176 @@ function populateMenuButtons(){
   }
 }
 
+function populateLevels(){
+  levels = [new Level(createVector(150, 90),            //spout pos
+                      new Cup(width/2,800, 50, 0),      //cup
+                      2000,                             //line amount
+                      [],                               //obstacles
+                      true),                            //balls can collide
+            
+            new Level(createVector(800, 90),            //spout pos
+                      new Cup(150,800, 100, PI/4),      //cup
+                      2000,                             //line amount
+                      [],                               //obstacles
+                      true),                            //balls can collide
+            
+            new Level(createVector(150, 600),           //spout pos
+                      new Cup(826,300, 85, PI*(7/6)),   //cup
+                      2000,                             //line amount
+                      [                                 //obstacles
+                        new Fan(createVector(450,950),    //fan pos
+                                100,                      //fan size
+                                0.21,                     //fan strength
+                                PI/3                      //fan angle
+                               )
+                      ],
+                      true),                            //balls can collide
+            
+            new Level(createVector(width/2,90),         //spout pos
+                      new Cup(width/2,800, 50),         //cup
+                      2000,                             //line amount
+                      [                                 //obstacles
+                        new Walls([
+                                    new Line([createVector(400,500),      //wall point1
+                                              createVector(width, 500)],  //wall point2
+                                              20,                         //wall width
+                                              200                         //wall transparency
+                                            )
+                        
+                                 ])
+                      ],
+                      true),                            //balls can collide
+            
+            new Level(createVector(250,90),             //spout pos
+                      new Cup(1250,800, 50),            //cup
+                      2000,                             //line amount
+                      [                                 //obstacles
+                        new Spinner(createVector(250, 500),            //spinner pos
+                                    200,                               //spinner length
+                                    PI/20                              //spin speed 
+                                   ),
+                        new Walls([
+                                    new Line([createVector(425,0),     //line points
+                                              createVector(425,330)],
+                                              20,                      //line width
+                                              200                      //line transparency
+                                            )
+                                 ])
+                      ],
+                      true),                            //balls can collide
+            
+            new Level(createVector(150, 90),            //spout pos
+                      new Cup(width/2,height-100, 100, 1*PI/3),            //cup
+                      2000,                             //line amount
+                      [                                 //obstacles
+                        new BlackHole(createVector(width/2, height/2 + 50),
+                                      150
+                                     )
+                      ],
+                      true),                            //balls can collide
+            
+            new Level(createVector(150, 700),           //spout pos
+                      new Cup(1250,200, 50, PI),        //cup
+                      2000,                             //line amount
+                      [                                 //obstacles
+                        new AntiGravityButton(createVector(width/2, 900),
+                                              100
+                                             )
+                      ],
+                      true),                            //balls can collide
+            
+            new Level(createVector(100, 150),           //spout pos
+                      new Cup(1350,200, 50, PI),        //cup
+                      2000,                             //line amount
+                      [                                 //obstacles
+                        new Walls([
+                                  new Line([createVector(300, height),
+                                            createVector(300, 300)
+                                           ],
+                                           20,
+                                           200
+                                          ),
+                                  new Line([createVector(600, height-300),
+                                            createVector(600, 0)
+                                           ],
+                                           20,
+                                           200
+                                          ),
+                                  new Line([createVector(900, height),
+                                            createVector(900, 300)
+                                           ],
+                                           20,
+                                           200
+                                          ),
+                                  new Line([createVector(1200, height-300),
+                                            createVector(1200, 0)
+                                           ],
+                                           20,
+                                           200
+                                          )
+                                 ]),
+                        new BouncePad(
+                                      createVector(750, height - 50),
+                                      225,
+                                      5
+                                     ),
+                        new BouncePad(
+                                      createVector(1350, height - 50),
+                                      225,
+                                      5
+                                     )
+                      ],
+                      false),                            //balls can collide
+            new Level(createVector(150, 700),           //spout pos
+                      new Cup(1350,200, 50),            //cup
+                      2000,                             //line amount
+                      [                                 //obstacles
+                        new Walls([
+                                  new Line([createVector(175, 800),
+                                            createVector(900, 800)
+                                           ],
+                                           20,
+                                           200
+                                          ),
+                                  new Line([createVector(175, 600),
+                                            createVector(900, 600)
+                                           ],
+                                           20,
+                                           200
+                                          ),
+                                  new Line([createVector(175, height),
+                                            createVector(175, 300)
+                                           ],
+                                           20,
+                                           200
+                                          ),
+                                  new Line([createVector(1300, height-300),
+                                            createVector(1300, 0)
+                                           ],
+                                           20,
+                                           200
+                                          )
+                                 ]),
+                        new BouncePad(
+                                      createVector(750, height - 50),
+                                      225,
+                                      5
+                                     ),
+                        new BouncePad(
+                                      createVector(1350, height - 50),
+                                      225,
+                                      5
+                                     ),
+                        new AntiGravityButton(
+                                              createVector(25, 75),
+                                              50
+                                             )
+                      ],
+                      false),                            //balls can collide
+            
+            ];
+}
+
 
 
 function populateLevelSelectButtons(){
@@ -77,6 +247,20 @@ function populateLevelButtons(){
   }
 }
 
+function populateSettingsButtons(){
+  //dyslexic fonts on/off
+  settingsButtons.push(new Button(width/2, 400, 100, 100, "Dyslexic Fonts:\nfalse"));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    if(dyslexicFonts){
+      textFont('Verdana');
+    }else{
+      textFont('Comic Sans MS');
+    }
+    dyslexicFonts = !dyslexicFonts;
+    this.text = "Dyslexic Fonts:\n" + dyslexicFonts;
+  }
+}
+
 function handleBalls(){
   if(keyIsDown(67)){ //if c is down pause balls
     for(let i in balls){
@@ -87,6 +271,14 @@ function handleBalls(){
     for (let i in balls){
       balls[i].display();
       balls[i].update();
+
+      if (levels[currentLevel].allowBallCollisions){ //bounce balls off the other balls;
+        for(let j in balls){
+          if (j != i){
+            balls[i].bounceBall(balls[j]);
+          }
+        }
+      }
       
       if (balls[i].bounce(cup.sides[0]) && cup.checkInCup(balls[i])){ //check if ball touching bottom of cup
         balls.splice(i, 1); //delete ball
@@ -113,13 +305,7 @@ function handleBalls(){
         balls[i].pos.y += (balls[i].vel.y);
       }
       
-      if (levels[currentLevel].allowBallCollisions){ //bounce balls off the other balls;
-        for(let j in balls){
-          if (j != i){
-            balls[i].bounceBall(balls[j]);
-          }
-        }
-      }
+      
       
     
       if (balls[i].pos.y > height){ //delete ball if under screen
@@ -184,7 +370,14 @@ function levelSelect(){
 
 function settings(){
   push();
-  text("settings placeholder",width/2,height/2);
+  volumeSlider.show();
+  outputVolume(volumeSlider.value());
+  fill(colourScheme.text[0], colourScheme.text[1], colourScheme.text[2])
+  textSize(25)
+  text("Volume:", width/2, 190);
+  for (let i in settingsButtons){
+    settingsButtons[i].display();
+  }
   pop();
 }
 

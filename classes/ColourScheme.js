@@ -39,6 +39,11 @@ class ColourScheme{
 
     this.applyColour(levelSelectButtons, this.buttons);
     this.applyTextColour(levelSelectButtons, this.text);
+    
+    this.applyColour(settingsButtons, this.buttons);
+    this.applyTextColour(settingsButtons, this.text); 
+
+    volumeSlider.style('accent-color:rgb('+this.lines[0]+','+this.lines[1]+','+this.lines[2]+")");
 
   }
 
@@ -57,14 +62,14 @@ class ColourScheme{
   }
 
   setInverted(){
-    this.balls = [255 - 255, 255 - 50, 255 - 50];
-    this.backGround = [255 - 250, 255 - 250, 255 - 250];
-    this.buttons = [255 - 200, 255 - 200, 255 - 200];
-    this.spout = [255 - 0, 255 - 0, 255 - 0];
-    this.spoutBar = [255 - 0, 255 - 250, 255 - 0];
-    this.lines = [255 - 0, 255 - 0, 255 - 0];
-    this.cup = [255 - 30, 255 - 217, 255 - 217];
-    this.text = [255 - 0, 255 - 0, 255 - 0];
+    this.balls = [255 - this.balls[0], 255 - this.balls[1], 255 - this.balls[2]];
+    this.backGround = [255 - this.backGround[0], 255 - this.backGround[1], 255 - this.backGround[2]];
+    this.buttons = [255 - this.buttons[0], 255 - this.buttons[1], 255 - this.buttons[2]];
+    this.spout = [255 - this.spout[0], 255 - this.spout[1], 255 - this.spout[2]];
+    this.spoutBar = [255 - this.spoutBar[0], 255 - this.spoutBar[1], 255 - this.spoutBar[2]];
+    this.lines = [255 - this.lines[0], 255 - this.lines[1], 255 - this.lines[2]];
+    this.cup = [255 - this.cup[0], 255 - this.cup[1], 255 - this.cup[2]];
+    this.text = [255 - this.text[0], 255 - this.text[1], 255 - this.text[2]];
 
     this.applyColours();
 
