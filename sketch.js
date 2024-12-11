@@ -31,8 +31,9 @@ let comicSans;          //font otf file
 let colourScheme;       //object that holds different colour schemes
 
 let volumeSlider;       //volume slider in settings
+let lineResSlider;      //line resolution slider in settings
 
-let dyslexicFonts;
+let dyslexicFonts;      //boolean dyslexic fonts activated or not
 
 let motionBlurAmount = 175;
 
@@ -49,6 +50,11 @@ function setup() {
   volumeSlider.size(700);
   volumeSlider.style('accent-color:rgb(0, 0, 0)')
   volumeSlider.hide();
+  lineResSlider = createSlider(5, 15, 7, 0.1);
+  lineResSlider.position(400, 350);
+  lineResSlider.size(700);
+  lineResSlider.style('accent-color:rgb(0, 0, 0)')
+  lineResSlider.hide();
   dyslexicFonts = false;
   
   screen = 1;
@@ -66,7 +72,6 @@ function setup() {
   settingsButtons = []
   populateSettingsButtons();
   textAlign(CENTER, CENTER);
-  //textFont(comicSans);
   fullscreenButton = new Button(25,25,50,50, "⛶", [255,255,255], 30);
   fullscreenButton.action = function(){
     fullscreen(!fullscreen());
@@ -81,6 +86,7 @@ function setup() {
 
 function draw() {
   volumeSlider.hide();
+  lineResSlider.hide();
   background(colourScheme.backGround[0], colourScheme.backGround[1], colourScheme.backGround[2], motionBlurAmount);
   switch (screen){
     case 0:
@@ -158,7 +164,7 @@ function mouseReleased(){
       for (let i = 0; i < lines[lines.length-1].points.length-1;i++){ //removes duplicate points for performance
         let pointDiff = p5.Vector.sub(lines[lines.length-1].points[i],
                                       lines[lines.length-1].points[i+1]); //find vector from point at i to point at i+1
-        if(pointDiff.mag()<=7){ //if points too close
+        if(pointDiff.mag()<=lineResSlider.value()){ //if points too close
           lines[lines.length-1].points.splice(i,1); //remove point
           tooBunched = true;
         }

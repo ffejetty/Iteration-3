@@ -249,7 +249,7 @@ function populateLevelButtons(){
 
 function populateSettingsButtons(){
   //dyslexic fonts on/off
-  settingsButtons.push(new Button(width/2, 400, 100, 100, "Dyslexic Fonts:\nfalse"));
+  settingsButtons.push(new Button(width/2, 500, 100, 100, "Dyslexic Fonts:\nfalse"));
   settingsButtons[settingsButtons.length - 1].action = function (){
     if(dyslexicFonts){
       textFont('Verdana');
@@ -259,6 +259,7 @@ function populateSettingsButtons(){
     dyslexicFonts = !dyslexicFonts;
     this.text = "Dyslexic Fonts:\n" + dyslexicFonts;
   }
+
 }
 
 function handleBalls(){
@@ -372,9 +373,15 @@ function settings(){
   push();
   volumeSlider.show();
   outputVolume(volumeSlider.value());
+
+  lineResSlider.show();
+
   fill(colourScheme.text[0], colourScheme.text[1], colourScheme.text[2])
   textSize(25)
   text("Volume:", width/2, 190);
+
+  text("Line Resolution (smaller is smoother):", width/2, 340);
+
   for (let i in settingsButtons){
     settingsButtons[i].display();
   }
