@@ -35,7 +35,8 @@ let lineResSlider;      //line resolution slider in settings
 
 let dyslexicFonts;      //boolean dyslexic fonts activated or not
 
-let motionBlurAmount = 175;
+let motionBlurAmount = 175;//alpha value of each background, lower value will cause stronger fade effect
+let ballCam = false;    //snap camera to oldest ball boolean
 
 function setup() {
   createCanvas(1500, 1000);
@@ -85,6 +86,9 @@ function setup() {
 }
 
 function draw() {
+  if(balls.length > 0 && ballCam){
+    translate(width/2-balls[0].pos.x, height/2-balls[0].pos.y);
+  }
   volumeSlider.hide();
   lineResSlider.hide();
   background(colourScheme.backGround[0], colourScheme.backGround[1], colourScheme.backGround[2], motionBlurAmount);
@@ -197,6 +201,8 @@ function keyPressed(){
     colourScheme.setTritanopia();
   }else if(key == "e"){
     colourScheme.setInverted();
+  }else if(key == "z"){
+    ballCam = !ballCam;
   }
 }
 
