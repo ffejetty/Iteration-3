@@ -8,6 +8,7 @@ class ColourScheme{
     this.lines = [0, 0, 0];
     this.cup = [30, 217, 217];
     this.text = [0, 0, 0];
+
   }
   
   getBallColour(nBrightness){
@@ -44,10 +45,14 @@ class ColourScheme{
     this.applyTextColour(settingsButtons, this.text); 
 
     volumeSlider.style('accent-color:rgb('+this.lines[0]+','+this.lines[1]+','+this.lines[2]+")");
-
+    lineResSlider.style('accent-color:rgb('+this.lines[0]+','+this.lines[1]+','+this.lines[2]+")");
   }
 
+  
+
+
   setDefault(){
+    
     this.balls = [255, 50, 50];
     this.backGround = [250, 250, 250];
     this.buttons = [200, 200, 200];
@@ -62,6 +67,7 @@ class ColourScheme{
   }
 
   setInverted(){
+    
     this.balls = [255 - this.balls[0], 255 - this.balls[1], 255 - this.balls[2]];
     this.backGround = [255 - this.backGround[0], 255 - this.backGround[1], 255 - this.backGround[2]];
     this.buttons = [255 - this.buttons[0], 255 - this.buttons[1], 255 - this.buttons[2]];
@@ -76,6 +82,7 @@ class ColourScheme{
   }
 
   setTheme1(){
+    
     this.balls = [212, 190, 228];
     this.backGround = [155, 126, 189];
     this.buttons = [212, 190, 228];
@@ -89,6 +96,7 @@ class ColourScheme{
   }
 
   setTheme2(){
+    
     this.balls = [200, 111, 77];
     this.backGround = [249, 243, 207];
     this.buttons = [221, 188, 137];
@@ -102,6 +110,7 @@ class ColourScheme{
   }
 
   setTheme3(){
+    
     this.balls = [115, 236, 139];
     this.backGround = [210, 255, 114];
     this.buttons = [115, 236, 139];
@@ -115,6 +124,7 @@ class ColourScheme{
   }
 
   setProtanopia(){
+    
     this.balls = [243, 215, 37];
     this.backGround = [250, 250, 250];
     this.buttons = [200, 200, 200];
@@ -128,6 +138,7 @@ class ColourScheme{
   }
 
   setTritanopia(){
+    
     this.balls = [255, 50, 50];
     this.backGround = [250, 250, 250];
     this.buttons = [207, 196, 226];
@@ -141,6 +152,7 @@ class ColourScheme{
   }
 
   setSecret(){
+    
     this.balls = [265, 189, 214];
     this.backGround = [255, 255, 255];
     this.buttons = [157, 227, 260];

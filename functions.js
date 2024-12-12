@@ -260,6 +260,31 @@ function populateSettingsButtons(){
     this.text = "Dyslexic Fonts:\n" + dyslexicFonts;
   }
 
+  //Colour buttons
+
+
+  //Default Theme
+  settingsButtons.push(new Button(width/2 - 300, 650, 100, 100, "Default Theme"));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    colourScheme.setDefault();
+  }
+
+  //Theme 1
+  settingsButtons.push(new Button(width/2 - 100, 650, 100, 100, "Theme 1"));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    colourScheme.setTheme1();
+  }
+  //Theme 2
+  settingsButtons.push(new Button(width/2 + 100, 650, 100, 100, "Theme 2"));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    colourScheme.setTheme2();
+  }
+  //Theme 3
+  settingsButtons.push(new Button(width/2 + 300, 650, 100, 100, "Theme 3"));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    colourScheme.setTheme3();
+  }
+
 }
 
 function handleBalls(){
@@ -382,9 +407,40 @@ function settings(){
 
   text("Line Resolution (smaller is smoother):", width/2, 340);
 
+  //let exampBall = new Ball()
+
   for (let i in settingsButtons){
-    settingsButtons[i].display();
+    if(settingsButtons[i].hovered() && mouseY >= 600 && mouseY <= 700){
+
+      let tempBalls = colourScheme.balls;
+      let tempBackGround = colourScheme.backGround;
+      let tempButtons = colourScheme.buttons;
+      let tempSpout = colourScheme.spout;
+      let tempSpoutBar = colourScheme.spoutBar;
+      let tempLines = colourScheme.lines;
+      let tempCup = colourScheme.cup;
+      let tempText = colourScheme.text;
+
+      settingsButtons[i].action();
+
+      settingsButtons[i].display();
+
+      colourScheme.balls = tempBalls;
+      colourScheme.backGround = tempBackGround;
+      colourScheme.buttons = tempButtons;
+      colourScheme.spout = tempSpout;
+      colourScheme.spoutBar = tempSpoutBar;
+      colourScheme.lines = tempLines;
+      colourScheme.cup = tempCup;
+      colourScheme.text = tempText;
+
+      colourScheme.applyColours();
+
+    }else{
+      settingsButtons[i].display();
+    }
   }
+  
   pop();
 }
 
