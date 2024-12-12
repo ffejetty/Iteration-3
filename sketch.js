@@ -111,7 +111,7 @@ function draw() {
   fullscreenButton.display();
   mainMenuButton.display();
   
-  //text(mouseX + ", " + mouseY,mouseX,mouseY);
+  text(mouseX + ", " + mouseY,mouseX,mouseY);
   
 }
 function mousePressed(){

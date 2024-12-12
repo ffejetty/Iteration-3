@@ -249,7 +249,7 @@ function populateLevelButtons(){
 
 function populateSettingsButtons(){
   //dyslexic fonts on/off
-  settingsButtons.push(new Button(width/2, 500, 100, 100, "Dyslexic Fonts:\nfalse"));
+  settingsButtons.push(new Button(width/2, 500, 100, 100, "Dyslexic Fonts:\nfalse", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     if(dyslexicFonts){
       textFont('Verdana');
@@ -264,23 +264,23 @@ function populateSettingsButtons(){
 
 
   //Default Theme
-  settingsButtons.push(new Button(width/2 - 300, 650, 100, 100, "Default Theme"));
+  settingsButtons.push(new Button(width/2 - 300, 650, 100, 100, "Default Theme", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setDefault();
   }
 
   //Theme 1
-  settingsButtons.push(new Button(width/2 - 100, 650, 100, 100, "Theme 1"));
+  settingsButtons.push(new Button(width/2 - 100, 650, 100, 100, "Theme 1", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setTheme1();
   }
   //Theme 2
-  settingsButtons.push(new Button(width/2 + 100, 650, 100, 100, "Theme 2"));
+  settingsButtons.push(new Button(width/2 + 100, 650, 100, 100, "Theme 2", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setTheme2();
   }
   //Theme 3
-  settingsButtons.push(new Button(width/2 + 300, 650, 100, 100, "Theme 3"));
+  settingsButtons.push(new Button(width/2 + 300, 650, 100, 100, "Theme 3", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setTheme3();
   }
@@ -406,12 +406,12 @@ function settings(){
   text("Volume:", width/2, 190);
 
   text("Line Resolution (smaller is smoother):", width/2, 340);
-
-  //let exampBall = new Ball()
-
+  drawColourExamples();
   for (let i in settingsButtons){
-    if(settingsButtons[i].hovered() && mouseY >= 600 && mouseY <= 700){
-
+    if(!(settingsButtons[i].hovered() && mouseY >= 600 && mouseY <= 700)){
+      settingsButtons[i].display();
+    }else{
+      
       let tempBalls = colourScheme.balls;
       let tempBackGround = colourScheme.backGround;
       let tempButtons = colourScheme.buttons;
@@ -421,9 +421,16 @@ function settings(){
       let tempCup = colourScheme.cup;
       let tempText = colourScheme.text;
 
+
+
+
       settingsButtons[i].action();
 
       settingsButtons[i].display();
+
+      
+      drawColourExamples();
+
 
       colourScheme.balls = tempBalls;
       colourScheme.backGround = tempBackGround;
@@ -435,13 +442,18 @@ function settings(){
       colourScheme.text = tempText;
 
       colourScheme.applyColours();
-
-    }else{
-      settingsButtons[i].display();
     }
   }
   
   pop();
+}
+
+function drawColourExamples(){
+  let ballColour = colourScheme.getBallColour(1);
+
+  fill(ballColour[0], ballColour[1], ballColour[2]);
+
+  circle(650, 750, 10);
 }
 
 function game(level){
