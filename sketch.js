@@ -47,12 +47,12 @@ function setup() {
   
   colourScheme = new ColourScheme();
   volumeSlider = createSlider(0, 1, 0.5, 0.01);
-  volumeSlider.position(400, 200);
+  volumeSlider.position(400, 150);
   volumeSlider.size(700);
   volumeSlider.style('accent-color:rgb(0, 0, 0)')
   volumeSlider.hide();
   lineResSlider = createSlider(5, 15, 7, 0.1);
-  lineResSlider.position(400, 350);
+  lineResSlider.position(400, 300);
   lineResSlider.size(700);
   lineResSlider.style('accent-color:rgb(0, 0, 0)')
   lineResSlider.hide();
@@ -204,7 +204,12 @@ function keyPressed(){
   }else if(key == "z"){
     ballCam = !ballCam;
   }else if(key == "p"){
-    console.log(lines);
+    for(let i in lines){
+      console.log("Line " + (i+1) + ": ")
+      for(let j in lines[i].points){
+        console.log(lines[i].points[j].x + ", " + lines[i].points[j].y);
+      }
+    }
   }
 }
 

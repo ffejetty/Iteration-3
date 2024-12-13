@@ -251,7 +251,7 @@ function populateLevelButtons(){
 
 function populateSettingsButtons(){
   //dyslexic fonts on/off
-  settingsButtons.push(new Button(width/2, 500, 100, 100, "Dyslexic Fonts:\nfalse", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2, 450, 100, 100, "Dyslexic Fonts:\nfalse", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     if(dyslexicFonts){
       textFont('Verdana');
@@ -266,23 +266,23 @@ function populateSettingsButtons(){
 
 
   //Default Theme
-  settingsButtons.push(new Button(width/2 - 300, 650, 100, 100, "Default Theme", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2 - 300, 600, 100, 100, "Default Theme", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setDefault();
   }
 
   //Theme 1
-  settingsButtons.push(new Button(width/2 - 100, 650, 100, 100, "Theme 1", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2 - 100, 600, 100, 100, "Theme 1", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setTheme1();
   }
   //Theme 2
-  settingsButtons.push(new Button(width/2 + 100, 650, 100, 100, "Theme 2", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2 + 100, 600, 100, 100, "Theme 2", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setTheme2();
   }
   //Theme 3
-  settingsButtons.push(new Button(width/2 + 300, 650, 100, 100, "Theme 3", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2 + 300, 600, 100, 100, "Theme 3", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setTheme3();
   }
@@ -405,12 +405,12 @@ function settings(){
 
   fill(colourScheme.text[0], colourScheme.text[1], colourScheme.text[2])
   textSize(25)
-  text("Volume:", width/2, 190);
+  text("Volume:", width/2, 140);
 
-  text("Line Resolution (smaller is smoother):", width/2, 340);
+  text("Line Resolution (smaller is smoother):", width/2, 290);
   drawColourExamples();
   for (let i in settingsButtons){
-    if(!(settingsButtons[i].hovered() && mouseY >= 600 && mouseY <= 700)){
+    if(!(settingsButtons[i].hovered() && mouseY >= 550 && mouseY <= 650)){
       settingsButtons[i].display();
     }else{
       
@@ -451,32 +451,59 @@ function settings(){
 }
 
 function drawColourExamples(){
+
+  let exampTrans = createVector(0, -40);
+
   setFill(colourScheme.backGround);
-  rect(600, 710, 300, 100);
+  rect(600 + exampTrans.x, 710 + exampTrans.y, 300, 200);
 
   setFill(colourScheme.getBallColour(1));
-  circle(650, 760, 10);
+  circle(650 + exampTrans.x, 790 + exampTrans.y, 10);
+  setFill(colourScheme.getBallColour(0.5));
+  circle(680 + exampTrans.x, 808 + exampTrans.y, 10);
+  setFill(colourScheme.getBallColour(0.7));
+  circle(725 + exampTrans.x, 790 + exampTrans.y, 10);
+  setFill(colourScheme.getBallColour(0.4));
+  circle(780 + exampTrans.x, 810 + exampTrans.y, 10);
+  setFill(colourScheme.getBallColour(0.9));
+  circle(815 + exampTrans.x, 860 + exampTrans.y, 10);
 
   setFill(colourScheme.spout);
-  rect(610, 720, 30, 40);
+  rect(610 + exampTrans.x, 720 + exampTrans.y, 30, 40);
 
   fill(255 - colourScheme.spout[0], 255 - colourScheme.spout[1], 255 - colourScheme.spout[2])
-  rect(622, 725, 6, 30);
+  rect(622 + exampTrans.x, 725 + exampTrans.y, 6, 30);
 
   setFill(colourScheme.spoutBar);
-  rect(622, 740+15-(30*(0.7)), 6, (30*(0.7))); 
+  rect(622 + exampTrans.x, 740+15-(30*(0.7)) + exampTrans.y, 6, (30*(0.7))); 
+
+  let lineTranslation = createVector(12, 20).add(exampTrans);
 
   let exampLine = new Line(
-                           [createVector(605, 765),
-                            createVector(610, 775),
-                            createVector(620, 785),
-                            createVector(690, 795),
-                            createVector(690, 795)
+                           [createVector(593 + lineTranslation.x, 758 + lineTranslation.y),
+                            createVector(600 + lineTranslation.x, 768 + lineTranslation.y),
+                            createVector(608 + lineTranslation.x, 774 + lineTranslation.y),
+                            createVector(613 + lineTranslation.x, 779 + lineTranslation.y),
+                            createVector(621 + lineTranslation.x, 785 + lineTranslation.y),
+                            createVector(629 + lineTranslation.x, 790 + lineTranslation.y),
+                            createVector(641 + lineTranslation.x, 795 + lineTranslation.y),
+                            createVector(651 + lineTranslation.x, 797 + lineTranslation.y),
+                            createVector(659 + lineTranslation.x, 798 + lineTranslation.y),
+                            createVector(674 + lineTranslation.x, 801 + lineTranslation.y),
+                            createVector(683 + lineTranslation.x, 803 + lineTranslation.y),
+                            createVector(723 + lineTranslation.x, 807 + lineTranslation.y)
                            ],
-                           10
+                           10,
+                           255,
+                           colourScheme.lines
                           );
 
   exampLine.display();
+
+  let exampCup = new Cup(810 + exampTrans.x, 850 + exampTrans.y, 40, -PI/4);
+
+  exampCup.display();
+
 
 }
 
