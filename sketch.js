@@ -29,6 +29,7 @@ let creatingLine;       //boolean, if player is creating line or not
 let comicSans;          //font otf file
 
 let colourScheme;       //object that holds different colour schemes
+let customColourScheme;
 
 let volumeSlider;       //volume slider in settings
 let lineResSlider;      //line resolution slider in settings
@@ -46,6 +47,7 @@ function setup() {
   cup = new Cup(0,0,0);
   
   colourScheme = new ColourScheme();
+  customColourScheme = new ColourScheme();
   volumeSlider = createSlider(0, 1, 0.5, 0.01);
   volumeSlider.position(400, 150);
   volumeSlider.size(700);

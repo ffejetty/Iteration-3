@@ -300,8 +300,32 @@ function populateSettingsButtons(){
 
   //Custom Colour Buttons
 
-  //Aply custom theme
-  settingsButtons.push(new Button(width/2 - 300, 885 , 100, 100, "Colour Blind:\ntritanopia", colourScheme.buttons));
+  //Apply custom theme
+  settingsButtons.push(new Button(width/2 - 300, 940 , 100, 100, "Apply Custom Theme", colourScheme.buttons));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    colourScheme.setCustom();
+  }
+
+  //Ball Colour
+  settingsButtons.push(new Button(width/2 - 125, 915 , 50, 50, "Select Ball Colour", colourScheme.buttons));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    colourScheme.setCustom();
+  }
+
+  //Background Colour
+  settingsButtons.push(new Button(width/2 - 125, 970 , 50, 50, "Select Background Colour", colourScheme.buttons));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    colourScheme.setCustom();
+  }
+
+  //Buttons Colour
+  settingsButtons.push(new Button(width/2 - 125, 970 , 50, 50, "Select Button Colour", colourScheme.buttons));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    colourScheme.setCustom();
+  }
+
+  //Spout Colour
+  settingsButtons.push(new Button(width/2 - 125, 970 , 50, 50, "Select Spout Colour", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setCustom();
   }
