@@ -8,7 +8,9 @@ function isBetween(num, bound1, bound2, tolerance = 0) {
 }
 
 
-
+function setFill(colour){
+  fill(colour[0], colour[1], colour[2], colour[3]);
+}
 
 
 function populateMenuButtons(){
@@ -449,11 +451,33 @@ function settings(){
 }
 
 function drawColourExamples(){
-  let ballColour = colourScheme.getBallColour(1);
+  setFill(colourScheme.backGround);
+  rect(600, 710, 300, 100);
 
-  fill(ballColour[0], ballColour[1], ballColour[2]);
+  setFill(colourScheme.getBallColour(1));
+  circle(650, 760, 10);
 
-  circle(650, 750, 10);
+  setFill(colourScheme.spout);
+  rect(610, 720, 30, 40);
+
+  fill(255 - colourScheme.spout[0], 255 - colourScheme.spout[1], 255 - colourScheme.spout[2])
+  rect(622, 725, 6, 30);
+
+  setFill(colourScheme.spoutBar);
+  rect(622, 740+15-(30*(0.7)), 6, (30*(0.7))); 
+
+  let exampLine = new Line(
+                           [createVector(605, 765),
+                            createVector(610, 775),
+                            createVector(620, 785),
+                            createVector(690, 795),
+                            createVector(690, 795)
+                           ],
+                           10
+                          );
+
+  exampLine.display();
+
 }
 
 function game(level){

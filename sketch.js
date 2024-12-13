@@ -203,6 +203,8 @@ function keyPressed(){
     colourScheme.setInverted();
   }else if(key == "z"){
     ballCam = !ballCam;
+  }else if(key == "p"){
+    console.log(lines);
   }
 }
 
