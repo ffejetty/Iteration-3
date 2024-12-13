@@ -151,6 +151,19 @@ class ColourScheme{
     this.applyColours();
   }
 
+  setCustom(){
+    this.balls = customColourScheme.balls;
+    this.backGround = customColourScheme.backGround;
+    this.buttons = customColourScheme.buttons;
+    this.spout = customColourScheme.spout;
+    this.spoutBar = customColourScheme.spoutBar;
+    this.lines = customColourScheme.lines;
+    this.cup = customColourScheme.cup;
+    this.text = customColourScheme.text;
+
+    this.applyColours();
+  }
+
   setSecret(){
     
     this.balls = [265, 189, 214];

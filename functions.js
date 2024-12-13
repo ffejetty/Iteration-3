@@ -264,27 +264,46 @@ function populateSettingsButtons(){
 
   //Colour buttons
 
-
   //Default Theme
-  settingsButtons.push(new Button(width/2 - 300, 600, 100, 100, "Default Theme", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2 - 500, 600, 100, 100, "Default Theme", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setDefault();
   }
 
   //Theme 1
-  settingsButtons.push(new Button(width/2 - 100, 600, 100, 100, "Theme 1", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2 - 300, 600, 100, 100, "Theme 1", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setTheme1();
   }
   //Theme 2
-  settingsButtons.push(new Button(width/2 + 100, 600, 100, 100, "Theme 2", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2 - 100, 600, 100, 100, "Theme 2", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setTheme2();
   }
   //Theme 3
-  settingsButtons.push(new Button(width/2 + 300, 600, 100, 100, "Theme 3", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2 + 100, 600, 100, 100, "Theme 3", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
     colourScheme.setTheme3();
+  }
+
+  //Protanopia
+  settingsButtons.push(new Button(width/2 + 300, 600, 100, 100, "Colour Blind:\nProtanopia", colourScheme.buttons));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    colourScheme.setProtanopia();
+  }
+
+  //Tritanopia
+  settingsButtons.push(new Button(width/2 + 500, 600, 100, 100, "Colour Blind:\ntritanopia", colourScheme.buttons));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    colourScheme.setTritanopia();
+  }
+
+  //Custom Colour Buttons
+
+  //Aply custom theme
+  settingsButtons.push(new Button(width/2 - 300, 885 , 100, 100, "Colour Blind:\ntritanopia", colourScheme.buttons));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    colourScheme.setCustom();
   }
 
 }
@@ -424,12 +443,9 @@ function settings(){
       let tempText = colourScheme.text;
 
 
-
-
       settingsButtons[i].action();
 
       settingsButtons[i].display();
-
       
       drawColourExamples();
 
@@ -444,6 +460,7 @@ function settings(){
       colourScheme.text = tempText;
 
       colourScheme.applyColours();
+
     }
   }
   
@@ -454,9 +471,10 @@ function drawColourExamples(){
 
   let exampTrans = createVector(0, -40);
 
-  setFill(colourScheme.backGround);
+  setFill(colourScheme.backGround);  //background
   rect(600 + exampTrans.x, 710 + exampTrans.y, 300, 200);
 
+  //balls
   setFill(colourScheme.getBallColour(1));
   circle(650 + exampTrans.x, 790 + exampTrans.y, 10);
   setFill(colourScheme.getBallColour(0.5));
@@ -468,17 +486,21 @@ function drawColourExamples(){
   setFill(colourScheme.getBallColour(0.9));
   circle(815 + exampTrans.x, 860 + exampTrans.y, 10);
 
+  //spout
   setFill(colourScheme.spout);
   rect(610 + exampTrans.x, 720 + exampTrans.y, 30, 40);
 
+  //bar behind spout bar
   fill(255 - colourScheme.spout[0], 255 - colourScheme.spout[1], 255 - colourScheme.spout[2])
   rect(622 + exampTrans.x, 725 + exampTrans.y, 6, 30);
 
+  //spout bar
   setFill(colourScheme.spoutBar);
   rect(622 + exampTrans.x, 740+15-(30*(0.7)) + exampTrans.y, 6, (30*(0.7))); 
 
   let lineTranslation = createVector(12, 20).add(exampTrans);
 
+  //line
   let exampLine = new Line(
                            [createVector(593 + lineTranslation.x, 758 + lineTranslation.y),
                             createVector(600 + lineTranslation.x, 768 + lineTranslation.y),
@@ -500,6 +522,7 @@ function drawColourExamples(){
 
   exampLine.display();
 
+  //cup
   let exampCup = new Cup(810 + exampTrans.x, 850 + exampTrans.y, 40, -PI/4);
 
   exampCup.display();
