@@ -44,8 +44,9 @@ class ColourScheme{
     this.applyColour(settingsButtons, this.buttons);
     this.applyTextColour(settingsButtons, this.text); 
 
-    volumeSlider.style('accent-color:rgb('+this.lines[0]+','+this.lines[1]+','+this.lines[2]+")");
-    lineResSlider.style('accent-color:rgb('+this.lines[0]+','+this.lines[1]+','+this.lines[2]+")");
+    volumeSlider.style('accent-color:rgb('+this.lines.toString() + ")");
+    lineResSlider.style('accent-color:rgb('+this.lines.toString()+")");
+    
   }
 
   

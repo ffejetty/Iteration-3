@@ -146,7 +146,7 @@ function populateLevels(){
                                       5
                                      )
                       ],
-                      false),                            //balls can collide
+                      false),                           //balls can collide
             new Level(createVector(150, 700),           //spout pos
                       new Cup(1350,200, 50),            //cup
                       2000,                             //line amount
@@ -251,16 +251,24 @@ function populateLevelButtons(){
 
 function populateSettingsButtons(){
   //dyslexic fonts on/off
-  settingsButtons.push(new Button(width/2, 450, 100, 100, "Dyslexic Fonts:\nfalse", colourScheme.buttons));
-  settingsButtons[settingsButtons.length - 1].action = function (){
-    if(dyslexicFonts){
-      textFont('Verdana');
-    }else{
-      textFont('Comic Sans MS');
+  settingsButtons.push(new Button(width/2, 
+                                  450, 
+                                  100, 
+                                  100, 
+                                  "Dyslexic Fonts:\nfalse", 
+                                  colourScheme.buttons
+                                ));
+
+  settingsButtons[settingsButtons.length - 1].action = 
+    function (){
+      if(dyslexicFonts){
+        textFont('Verdana');
+      }else{
+        textFont('Comic Sans MS');
+      }
+      dyslexicFonts = !dyslexicFonts;
+      this.text = "Dyslexic Fonts:\n" + dyslexicFonts;
     }
-    dyslexicFonts = !dyslexicFonts;
-    this.text = "Dyslexic Fonts:\n" + dyslexicFonts;
-  }
 
   //Colour buttons
 
@@ -499,7 +507,7 @@ function settings(){
       break;
   }
 
-  fill(colourScheme.text[0], colourScheme.text[1], colourScheme.text[2])
+  setFill(colourScheme.text);
   textSize(25)
   text("Volume:", width/2, 140);
 
@@ -507,15 +515,7 @@ function settings(){
   drawColourExamples();
 
   if(customSelected != "") {
-    let tempBalls = colourScheme.balls;
-    let tempBackGround = colourScheme.backGround;
-    let tempButtons = colourScheme.buttons;
-    let tempSpout = colourScheme.spout;
-    let tempSpoutBar = colourScheme.spoutBar;
-    let tempLines = colourScheme.lines;
-    let tempCup = colourScheme.cup;
-    let tempText = colourScheme.text;
-
+    let tempCol = JSON.parse(JSON.stringify(colourScheme))
 
     colourScheme.balls = customColourScheme.balls;
     colourScheme.backGround = customColourScheme.backGround;
@@ -531,39 +531,21 @@ function settings(){
     drawColourExamples();
 
 
-    colourScheme.balls = tempBalls;
-    colourScheme.backGround = tempBackGround;
-    colourScheme.buttons = tempButtons;
-    colourScheme.spout = tempSpout;
-    colourScheme.spoutBar = tempSpoutBar;
-    colourScheme.lines = tempLines;
-    colourScheme.cup = tempCup;
-    colourScheme.text = tempText;
+    colourScheme.balls = tempCol.balls;
+    colourScheme.backGround = tempCol.backGround;
+    colourScheme.buttons = tempCol.buttons;
+    colourScheme.spout = tempCol.spout;
+    colourScheme.spoutBar = tempCol.spoutBar;
+    colourScheme.lines = tempCol.lines;
+    colourScheme.cup = tempCol.cup;
+    colourScheme.text = tempCol.text;
 
     colourScheme.applyColours();
   }
 
   for (let i in settingsButtons){
     if(settingsButtons[i].hovered() && mouseY >= 550 && mouseY <= 650){
-
-      let tempBalls = colourScheme.balls;
-      let tempBackGround = colourScheme.backGround;
-      let tempButtons = colourScheme.buttons;
-      let tempSpout = colourScheme.spout;
-      let tempSpoutBar = colourScheme.spoutBar;
-      let tempLines = colourScheme.lines;
-      let tempCup = colourScheme.cup;
-      let tempText = colourScheme.text;
-
-
-      colourScheme.balls = tempBalls;
-      colourScheme.backGround = tempBackGround;
-      colourScheme.buttons = tempButtons;
-      colourScheme.spout = tempSpout;
-      colourScheme.spoutBar = tempSpoutBar;
-      colourScheme.lines = tempLines;
-      colourScheme.cup = tempCup;
-      colourScheme.text = tempText;
+      let tempCol = JSON.parse(JSON.stringify(colourScheme))
 
       settingsButtons[i].action();
       settingsButtons[i].display();
@@ -571,14 +553,14 @@ function settings(){
       drawColourExamples();
 
 
-      colourScheme.balls = tempBalls;
-      colourScheme.backGround = tempBackGround;
-      colourScheme.buttons = tempButtons;
-      colourScheme.spout = tempSpout;
-      colourScheme.spoutBar = tempSpoutBar;
-      colourScheme.lines = tempLines;
-      colourScheme.cup = tempCup;
-      colourScheme.text = tempText;
+      colourScheme.balls = tempCol.balls;
+      colourScheme.backGround = tempCol.backGround;
+      colourScheme.buttons = tempCol.buttons;
+      colourScheme.spout = tempCol.spout;
+      colourScheme.spoutBar = tempCol.spoutBar;
+      colourScheme.lines = tempCol.lines;
+      colourScheme.cup = tempCol.cup;
+      colourScheme.text = tempCol.text;
 
       colourScheme.applyColours();
       
