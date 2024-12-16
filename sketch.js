@@ -30,6 +30,8 @@ let comicSans;          //font otf file
 
 let colourScheme;       //object that holds different colour schemes
 let customColourScheme;
+let customSelected;
+let customColourPicker;
 
 let volumeSlider;       //volume slider in settings
 let lineResSlider;      //line resolution slider in settings
@@ -48,6 +50,11 @@ function setup() {
   
   colourScheme = new ColourScheme();
   customColourScheme = new ColourScheme();
+  customSelected = "";
+
+  customColourPicker = createColorPicker('#000000');
+  customColourPicker.position(1000, 700);
+
   volumeSlider = createSlider(0, 1, 0.5, 0.01);
   volumeSlider.position(400, 150);
   volumeSlider.size(700);
@@ -93,6 +100,7 @@ function draw() {
   }
   volumeSlider.hide();
   lineResSlider.hide();
+  customColourPicker.hide();
   background(colourScheme.backGround[0], colourScheme.backGround[1], colourScheme.backGround[2], motionBlurAmount);
   switch (screen){
     case 0:

@@ -307,27 +307,51 @@ function populateSettingsButtons(){
   }
 
   //Ball Colour
-  settingsButtons.push(new Button(width/2 - 125, 915 , 50, 50, "Select Ball Colour", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2 - 75, 915 , 50, 50, "Select Ball Colour", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
-    colourScheme.setCustom();
+    customSelected = "Ball";
   }
 
   //Background Colour
-  settingsButtons.push(new Button(width/2 - 125, 970 , 50, 50, "Select Background Colour", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2 - 75, 965 , 50, 50, "Select Backing Colour", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
-    colourScheme.setCustom();
+    customSelected = "Background";
   }
 
   //Buttons Colour
-  settingsButtons.push(new Button(width/2 - 125, 970 , 50, 50, "Select Button Colour", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2 - 25, 915 , 50, 50, "Select Button Colour", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
-    colourScheme.setCustom();
+    customSelected = "Button";
   }
 
   //Spout Colour
-  settingsButtons.push(new Button(width/2 - 125, 970 , 50, 50, "Select Spout Colour", colourScheme.buttons));
+  settingsButtons.push(new Button(width/2 - 25, 965 , 50, 50, "Select Spout Colour", colourScheme.buttons));
   settingsButtons[settingsButtons.length - 1].action = function (){
-    colourScheme.setCustom();
+    customSelected = "Spout";
+  }
+
+  //Spout Bar Colour
+  settingsButtons.push(new Button(width/2 + 25, 915 , 50, 50, "Select Ball Bar Colour", colourScheme.buttons));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    customSelected = "Spout Bar";
+  }
+
+  //Line Colour
+  settingsButtons.push(new Button(width/2 + 25, 965 , 50, 50, "Select Line Colour", colourScheme.buttons));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    customSelected = "Line";
+  }
+  
+  //Cup Colour
+  settingsButtons.push(new Button(width/2 + 75, 915 , 50, 50, "Select Cup Colour", colourScheme.buttons));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    customSelected = "Cup";
+  }
+
+  //Text Colour
+  settingsButtons.push(new Button(width/2 + 75, 965 , 50, 50, "Select Text Colour", colourScheme.buttons));
+  settingsButtons[settingsButtons.length - 1].action = function (){
+    customSelected = "Text";
   }
 
 }
@@ -446,17 +470,82 @@ function settings(){
 
   lineResSlider.show();
 
+  customColourPicker.show();
+
+  switch (customSelected){
+    case "Ball":
+        customColourScheme.balls = getColourArr(customColourPicker.color());
+      break;
+    case "Background":
+      customColourScheme.backGround = getColourArr(customColourPicker.color());
+      break;
+    case "Button":
+      customColourScheme.buttons = getColourArr(customColourPicker.color());
+      break;
+    case "Spout":
+      customColourScheme.spout = getColourArr(customColourPicker.color());
+      break;
+    case "Spout Bar":
+      customColourScheme.spoutBar = getColourArr(customColourPicker.color());
+      break;
+    case "Line":
+      customColourScheme.lines = getColourArr(customColourPicker.color());
+      break;
+    case "Cup":
+      customColourScheme.cup = getColourArr(customColourPicker.color());
+      break;
+    case "Text":
+      customColourScheme.text = getColourArr(customColourPicker.color());
+      break;
+  }
+
   fill(colourScheme.text[0], colourScheme.text[1], colourScheme.text[2])
   textSize(25)
   text("Volume:", width/2, 140);
 
   text("Line Resolution (smaller is smoother):", width/2, 290);
   drawColourExamples();
+
+  if(customSelected != "") {
+    let tempBalls = colourScheme.balls;
+    let tempBackGround = colourScheme.backGround;
+    let tempButtons = colourScheme.buttons;
+    let tempSpout = colourScheme.spout;
+    let tempSpoutBar = colourScheme.spoutBar;
+    let tempLines = colourScheme.lines;
+    let tempCup = colourScheme.cup;
+    let tempText = colourScheme.text;
+
+
+    colourScheme.balls = customColourScheme.balls;
+    colourScheme.backGround = customColourScheme.backGround;
+    colourScheme.buttons = customColourScheme.buttons;
+    colourScheme.spout = customColourScheme.spout;
+    colourScheme.spoutBar = customColourScheme.spoutBar;
+    colourScheme.lines = customColourScheme.lines;
+    colourScheme.cup = customColourScheme.cup;
+    colourScheme.text = customColourScheme.text;
+
+    colourScheme.applyColours();
+    
+    drawColourExamples();
+
+
+    colourScheme.balls = tempBalls;
+    colourScheme.backGround = tempBackGround;
+    colourScheme.buttons = tempButtons;
+    colourScheme.spout = tempSpout;
+    colourScheme.spoutBar = tempSpoutBar;
+    colourScheme.lines = tempLines;
+    colourScheme.cup = tempCup;
+    colourScheme.text = tempText;
+
+    colourScheme.applyColours();
+  }
+
   for (let i in settingsButtons){
-    if(!(settingsButtons[i].hovered() && mouseY >= 550 && mouseY <= 650)){
-      settingsButtons[i].display();
-    }else{
-      
+    if(settingsButtons[i].hovered() && mouseY >= 550 && mouseY <= 650){
+
       let tempBalls = colourScheme.balls;
       let tempBackGround = colourScheme.backGround;
       let tempButtons = colourScheme.buttons;
@@ -467,8 +556,16 @@ function settings(){
       let tempText = colourScheme.text;
 
 
-      settingsButtons[i].action();
+      colourScheme.balls = tempBalls;
+      colourScheme.backGround = tempBackGround;
+      colourScheme.buttons = tempButtons;
+      colourScheme.spout = tempSpout;
+      colourScheme.spoutBar = tempSpoutBar;
+      colourScheme.lines = tempLines;
+      colourScheme.cup = tempCup;
+      colourScheme.text = tempText;
 
+      settingsButtons[i].action();
       settingsButtons[i].display();
       
       drawColourExamples();
@@ -484,11 +581,19 @@ function settings(){
       colourScheme.text = tempText;
 
       colourScheme.applyColours();
-
+      
+    }else{
+      settingsButtons[i].display();
     }
   }
+
+  
   
   pop();
+}
+
+function getColourArr(obj){
+  return [red(obj), green(obj), blue(obj)];
 }
 
 function drawColourExamples(){
