@@ -41,9 +41,18 @@ let dyslexicFonts;      //boolean dyslexic fonts activated or not
 let motionBlurAmount = 175;//alpha value of each background, lower value will cause stronger fade effect
 let ballCam = false;    //snap camera to oldest ball boolean
 
+let backingMusic;
+
+function preload(){
+  soundFormats('mp3');
+  backingMusic = loadSound("/assets/Solver");
+}
+
 function setup() {
   createCanvas(1500, 1000);
   
+  backingMusic.loop();
+
   lines = [];
   balls = [];
   cup = new Cup(0,0,0);
@@ -95,6 +104,9 @@ function setup() {
 }
 
 function draw() {
+  if (!backingMusic.isPlaying()){
+    backingMusic.play();
+  }
   if(balls.length > 0 && ballCam){
     translate(width/2-balls[0].pos.x, height/2-balls[0].pos.y);
   }
