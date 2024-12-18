@@ -146,54 +146,7 @@ function populateLevels(){
                                       5
                                      )
                       ],
-                      false),                           //balls can collide
-            new Level(createVector(150, 700),           //spout pos
-                      new Cup(1350,200, 50),            //cup
-                      2000,                             //line amount
-                      [                                 //obstacles
-                        new Walls([
-                                  new Line([createVector(175, 800),
-                                            createVector(900, 800)
-                                           ],
-                                           20,
-                                           200
-                                          ),
-                                  new Line([createVector(175, 600),
-                                            createVector(900, 600)
-                                           ],
-                                           20,
-                                           200
-                                          ),
-                                  new Line([createVector(175, height),
-                                            createVector(175, 300)
-                                           ],
-                                           20,
-                                           200
-                                          ),
-                                  new Line([createVector(1300, height-300),
-                                            createVector(1300, 0)
-                                           ],
-                                           20,
-                                           200
-                                          )
-                                 ]),
-                        new BouncePad(
-                                      createVector(750, height - 50),
-                                      225,
-                                      5
-                                     ),
-                        new BouncePad(
-                                      createVector(1350, height - 50),
-                                      225,
-                                      5
-                                     ),
-                        new AntiGravityButton(
-                                              createVector(25, 75),
-                                              50
-                                             )
-                      ],
-                      false),                            //balls can collide
-            
+                      false)  //balls can collide
             ];
 }
 
