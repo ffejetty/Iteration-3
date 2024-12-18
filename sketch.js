@@ -51,6 +51,8 @@ function preload(){
 function setup() {
   createCanvas(1500, 1000);
 
+  backingMusic.play();
+
   lines = [];
   balls = [];
   cup = new Cup(0,0,0);
