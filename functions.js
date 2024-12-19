@@ -215,7 +215,7 @@ function populateSettingsButtons(){
   settingsButtons[settingsButtons.length - 1].action = 
     function (){
       if(dyslexicFonts){
-        textFont('Verdana');
+        textFont('Sans-Serif');
       }else{
         textFont('Comic Sans MS');
       }
