@@ -51,7 +51,7 @@ function preload(){
 function setup() {
   createCanvas(1500, 1000);
 
-  backingMusic.play();
+  userStartAudio();
 
   lines = [];
   balls = [];
