@@ -356,9 +356,12 @@ function handleBalls(){
         balls[i].pos.x += (balls[i].vel.x);
       }
       
-      if (balls[i].pos.y - balls[i].radius < 50){ //bounce off top of screen if too high
-        balls[i].vel.y *= (-1*balls[i].restitution);
-        balls[i].pos.y += (balls[i].vel.y);
+      if (balls[i].pos.y - balls[i].radius < 100){ //bounce off top of screen if too high
+        balls[i].bounce(new Line([createVector(-10, 40),
+                                  createVector(width + 10, 40)
+                                 ], 20));
+        //balls[i].vel.y *= (-1*balls[i].restitution);
+        //balls[i].pos.y += (balls[i].vel.y);
       }
       
       

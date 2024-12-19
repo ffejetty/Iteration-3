@@ -138,8 +138,6 @@ class Ball{
         
         //this.pos.add(createVector(this.vel.x,this.vel.y).normalize().mult(1.5)); //go forward 1 in vel direction to avoid getting stuck (old method)
         
-                
-        
         this.vel.mult(this.restitution); //decrease speed based on bounciness
         
         if (this.vel.mag() < 1){ //move ball down line
