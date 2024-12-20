@@ -44,11 +44,8 @@ let ballCam = false;    //snap camera to oldest ball boolean
 let backingMusic;
 
 function preload(){
-  soundFormats('mp3');
-  //backingMusic = loadSound("/assets/Solver");
-  backingMusic = loadSound("Iteration-3/assets/Solver");
-  
-  
+  //soundFormats('mp3');
+  backingMusic = loadSound("/assets/Solver.mp3");
 }
 
 function setup() {
