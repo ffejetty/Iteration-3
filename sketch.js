@@ -45,11 +45,9 @@ let backingMusic;
 
 function preload(){
   soundFormats('mp3');
-  try{
-    backingMusic = loadSound("/assets/Solver");
-  }catch(err){
-    backingMusic = loadSound("Iteration-3/assets/Solver");
-  }
+  //backingMusic = loadSound("/assets/Solver");
+  backingMusic = loadSound("Iteration-3/assets/Solver");
+  
   
 }
 
