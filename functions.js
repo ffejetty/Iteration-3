@@ -12,6 +12,16 @@ function setFill(colour){
   fill(colour[0], colour[1], colour[2], colour[3]);
 }
 
+function optimiseLine(lineObj){
+  for (let i = 0; i < lineObj.points.length-1;i++){ //removes duplicate points for performance
+    let pointDiff = p5.Vector.sub(lineObj.points[i],
+      lineObj.points[i+1]); //find vector from point at i to point at i+1
+    if(pointDiff.mag()<=lineResSlider.value()){ //if points too close
+      lineObj.points.splice(i,1); //remove point
+      tooBunched = true;
+    }
+  }
+}
 
 function populateMenuButtons(){
   //level select button
@@ -393,6 +403,7 @@ function handleLineDrawing(){
       levels[currentLevel].currentLineAmount -= round(lines[lines.length-1].points[lines[lines.length-1].points.length-1].dist(lines[lines.length-1].points[lines[lines.length-1].points.length-2]))
       if (levels[currentLevel].currentLineAmount <= 0){
         creatingLine = false;
+        optimiseLine(lines[lines.length-1]);
       }
     }
     
