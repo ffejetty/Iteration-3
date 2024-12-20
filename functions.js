@@ -370,8 +370,6 @@ function handleBalls(){
         balls[i].bounce(new Line([createVector(-10, 40),
                                   createVector(width + 10, 40)
                                  ], 20));
-        //balls[i].vel.y *= (-1*balls[i].restitution);
-        //balls[i].pos.y += (balls[i].vel.y);
       }
       
       

@@ -45,7 +45,12 @@ let backingMusic;
 
 function preload(){
   soundFormats('mp3');
-  backingMusic = loadSound("/assets/Solver");
+  try{
+    backingMusic = loadSound("/assets/Solver");
+  }catch(err){
+    backingMusic = loadSound("Iteration-3/assets/Solver");
+  }
+  
 }
 
 function setup() {
@@ -187,14 +192,8 @@ function mouseReleased(){
     let tooBunched = true;
     while(tooBunched){
       tooBunched = false;
-      for (let i = 0; i < lines[lines.length-1].points.length-1;i++){ //removes duplicate points for performance
-        let pointDiff = p5.Vector.sub(lines[lines.length-1].points[i],
-                                      lines[lines.length-1].points[i+1]); //find vector from point at i to point at i+1
-        if(pointDiff.mag()<=lineResSlider.value()){ //if points too close
-          lines[lines.length-1].points.splice(i,1); //remove point
-          tooBunched = true;
-        }
-      }
+      optimiseLine(lines[lines.length-1])
+      
     }
   }
 }
